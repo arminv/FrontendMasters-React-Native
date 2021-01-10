@@ -10,7 +10,9 @@ const App = () => {
       {/* NOTE: multiple styles cascade, meaning the last style overwrites the previous ones (if there is overlap/common styling) */}
       {/* NOTE: there is an equivalent for styled-components in React Native */}
       <View style={[styles.container, styles.yellow]}>
-        <Text>Hello world!</Text>
+        <Text style={styles.text}>
+          Here are some boxes of different colors{' '}
+        </Text>
       </View>
     </SafeAreaView>
   );
@@ -29,12 +31,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
     // paddingVertical: 10,
-    // paddingHorizontal: 30,
+    paddingHorizontal: 10,
+    paddingTop: 40,
     // borderColor: 'red',
     // borderWidth: 2,
   },
   safeArea: {
     flex: 2,
+  },
+  text: {
+    // NOTE: the default `fontSize` is 16
+    fontSize: 30,
+    fontWeight: 'bold',
   },
 });
 
