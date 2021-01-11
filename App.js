@@ -10,9 +10,19 @@ const App = () => {
       {/* NOTE: multiple styles cascade, meaning the last style overwrites the previous ones (if there is overlap/common styling) */}
       {/* NOTE: there is an equivalent for styled-components in React Native */}
       <View style={[styles.container, styles.yellow]}>
-        <Text style={styles.text}>
-          Here are some boxes of different colors{' '}
-        </Text>
+        <Text style={styles.text}>Here are some boxes of different colors</Text>
+        <View style={[styles.cyan, styles.box]}>
+          <Text style={styles.boxText}>Cyan: #2aa198</Text>
+        </View>
+        <View style={[styles.blue, styles.box]}>
+          <Text style={styles.boxText}>Blue: #268bd2</Text>
+        </View>
+        <View style={[styles.magenta, styles.box]}>
+          <Text style={styles.boxText}>Magenta: #d33682</Text>
+        </View>
+        <View style={[styles.orange, styles.box]}>
+          <Text style={styles.boxText}>Orange: #cb4b16</Text>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -42,6 +52,29 @@ const styles = StyleSheet.create({
   text: {
     // NOTE: the default `fontSize` is 16
     fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  box: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  cyan: {
+    backgroundColor: '#2aa198',
+  },
+  blue: {
+    backgroundColor: '#268bd2',
+  },
+  magenta: {
+    backgroundColor: '#d33682',
+  },
+  orange: {
+    backgroundColor: '#cb4b16',
+  },
+  boxText: {
+    color: 'white',
     fontWeight: 'bold',
   },
 });
