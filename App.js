@@ -34,12 +34,14 @@ const App = () => {
       <FlatList
         style={styles.container}
         data={COLORS}
-        // NOTE: if our data has keys, we will NOT need the `keyExtractor` prop here anymore!
+        // NOTE: if our data has unique keys, we will NOT need to specify the `keyExtractor` prop here anymore!
         keyExtractor={(item) => item.colorName}
         // NOTE: we destructure `{item}` below because `renderItem` also returns the item id:
         renderItem={({item}) => (
           <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
         )}
+        // NOTE: for `ListHeaderComponent` we can either pass a function that returns a component, or we can just pass the component itself:
+        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
       />
       {/* NOTE: we can apply more than one style to an element by passing an array to the style prop: */}
       {/* NOTE: multiple styles cascade, meaning the last style overwrites the previous ones (if there is overlap/common styling) */}

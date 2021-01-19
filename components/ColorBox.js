@@ -5,9 +5,16 @@ const ColorBox = ({colorName, hexCode}) => {
   const boxColor = {
     backgroundColor: hexCode,
   };
+  const textColor = {
+    // NOTE: this infers whether the color is light or dark:
+    color:
+      parseInt(hexCode.replace('#', ''), 16) > 0xffffff / 1.1
+        ? 'black'
+        : 'white',
+  };
   return (
     <View style={[styles.box, boxColor]}>
-      <Text style={styles.boxText}>
+      <Text style={[styles.boxText, textColor]}>
         {colorName}: {hexCode}
       </Text>
     </View>
