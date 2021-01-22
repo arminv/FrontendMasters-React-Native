@@ -2,27 +2,8 @@ import React from 'react';
 import {SafeAreaView, FlatList, StyleSheet, Text} from 'react-native';
 import ColorBox from '../components/ColorBox';
 
-// NOTE: These colors are part of the Solarized color scheme by Ethan Schoonover:
-const COLORS = [
-  {colorName: 'Base03', hexCode: '#002b36'},
-  {colorName: 'Base02', hexCode: '#073642'},
-  {colorName: 'Base01', hexCode: '#586e75'},
-  {colorName: 'Base00', hexCode: '#657b83'},
-  {colorName: 'Base0', hexCode: '#839496'},
-  {colorName: 'Base1', hexCode: '#93a1a1'},
-  {colorName: 'Base2', hexCode: '#eee8d5'},
-  {colorName: 'Base3', hexCode: '#fdf6e3'},
-  {colorName: 'Yellow', hexCode: '#b58900'},
-  {colorName: 'Orange', hexCode: '#cb4b16'},
-  {colorName: 'Red', hexCode: '#dc322f'},
-  {colorName: 'Magenta', hexCode: '#d33682'},
-  {colorName: 'Violet', hexCode: '#6c71c4'},
-  {colorName: 'Blue', hexCode: '#268bd2'},
-  {colorName: 'Cyan', hexCode: '#2aa198'},
-  {colorName: 'Green', hexCode: '#859900'},
-];
-
-const ColorPalette = () => {
+const ColorPalette = ({route}) => {
+  const {paletteName, colors} = route.params;
   return (
     // NOTE: `react navigation`  handles the screen size, etc so we do NOT need the `<SafeAreaView>` anymore!
     <SafeAreaView style={styles.safeArea}>
@@ -32,7 +13,7 @@ const ColorPalette = () => {
       There are special components in React Native for rendering lists: these are FlatList and SectionList. */}
       <FlatList
         style={styles.container}
-        data={COLORS}
+        data={colors}
         // NOTE: if our data has unique keys, we will NOT need to specify the `keyExtractor` prop here anymore!
         keyExtractor={(item) => item.colorName}
         // NOTE: we destructure `{item}` below because `renderItem` also returns the item id:
@@ -40,7 +21,7 @@ const ColorPalette = () => {
           <ColorBox colorName={item.colorName} hexCode={item.hexCode} />
         )}
         // NOTE: for `ListHeaderComponent` we can either pass a function that returns a component, or we can just pass the component itself:
-        ListHeaderComponent={<Text style={styles.text}>Solarized</Text>}
+        ListHeaderComponent={<Text style={styles.text}>{paletteName}</Text>}
       />
       {/* NOTE: we can apply more than one style to an element by passing an array to the style prop: */}
       {/* NOTE: multiple styles cascade, meaning the last style overwrites the previous ones (if there is overlap/common styling) */}

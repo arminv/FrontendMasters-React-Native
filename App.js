@@ -17,7 +17,11 @@ const App = () => {
       <Stack.Navigator>
         {/* NOTE: the stack at the top (root) will be visible by default (`Home` in this case)! */}
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="ColorPalette" component={ColorPalette} />
+        <Stack.Screen
+          name="ColorPalette"
+          component={ColorPalette}
+          options={({route}) => ({title: route.params.paletteName})}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
