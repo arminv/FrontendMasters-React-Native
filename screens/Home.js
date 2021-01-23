@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, FlatList} from 'react-native';
+import {FlatList} from 'react-native';
+import PalettePreview from '../components/PalettePreview';
 
 // NOTE: These colors are part of the Solarized color scheme by Ethan Schoonover:
 const SOLARIZED = [
@@ -50,14 +51,14 @@ const Home = ({navigation}) => {
       data={COLOR_PALETTES}
       keyExtractor={(item) => item.paletteName}
       renderItem={({item}) => (
-        <TouchableOpacity
-          onPress={() => {
+        <PalettePreview
+          handlePress={() => {
             // NOTE: we use the actual `name` of the screen we want to navigate into (`ColorPalette` in this case):
             // NOTE: the 2nd argument passed to `navigate` are props that we can pass through to the destination screen (and use via `route.params`):
             navigation.navigate('ColorPalette', item);
-          }}>
-          <Text>{item.paletteName}</Text>
-        </TouchableOpacity>
+          }}
+          colorPalette={item}
+        />
       )}
     />
   );
